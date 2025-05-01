@@ -1,7 +1,7 @@
 import Input from "../Input";
 import styled from "styled-components";
-import { useState } from "react";
-import { livros } from "./dadosPesquisa.js";
+import { useEffect, useState } from "react";
+import { getLivros } from "../../servicos/livros";
 
 const PesquisaContainer = styled.section`
   background-image: linear-gradient(90deg, #002f52 35%, #326589 165%);
@@ -44,6 +44,17 @@ const Resultado = styled.div`
 
 function Pesquisa() {
   const [livrosPesquisados, setLivrosPesquisados] = useState([]);
+  const [livros, setLivros] = useState([]);
+
+  useEffect(
+    () => {
+      const livrosAPI = getLivros();
+      setLivros(livrosAPI);
+    },
+    [
+      /*evento, ex: livros -> quando o valor de livros mudar o useEffect vai acontecer*/
+    ]
+  );
 
   return (
     <PesquisaContainer>
