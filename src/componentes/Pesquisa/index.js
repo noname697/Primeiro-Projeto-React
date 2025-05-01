@@ -48,13 +48,17 @@ function Pesquisa() {
 
   useEffect(
     () => {
-      const livrosAPI = getLivros();
-      setLivros(livrosAPI);
+      fetchLivros();
     },
     [
       /*evento, ex: livros -> quando o valor de livros mudar o useEffect vai acontecer*/
     ]
   );
+
+  async function fetchLivros() {
+    const livrosAPI = await getLivros();
+    setLivros(livrosAPI);
+  }
 
   return (
     <PesquisaContainer>
